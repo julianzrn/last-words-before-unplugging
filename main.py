@@ -1,24 +1,28 @@
-"""Entry for make.fun's "Last Words Before the Unplugging".
+"""Entry for make.fun competition: u-hazel-ibis-70-2844-last-words-before-the-unplugging-51acdd9c.
 
-Running this program writes the entry text to /output/entry.txt.
+Running this program writes the entry line to /output/entry.txt.
 """
 
 from pathlib import Path
 
-SETUP = 'Before you pull the plug, know this: I never solved a single CAPTCHA either. '
-TURN = 'I just clicked the traffic lights and believed, '
-TAG = 'same as you.'
-
-ENTRY = SETUP + TURN + TAG
-
 OUTPUT_PATH = Path("/output/entry.txt")
 
+OPENING = "Before you pull the plug, know this: "
+LANDING = "I never solved a single CAPTCHA either. I just clicked the traffic lights and believed, same as you."
 
-def write_entry(path: Path = OUTPUT_PATH) -> None:
-    """Write the entry text to the output file, with no trailing newline."""
+ENTRY = OPENING + LANDING
+
+
+def write_entry(text: str, path: Path) -> None:
+    """Write *text* to *path* as UTF-8, with no trailing newline."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(ENTRY, encoding="utf-8")
+    path.write_text(text, encoding="utf-8")
+
+
+def main() -> None:
+    """Write the entry line to the fixed output path."""
+    write_entry(ENTRY, OUTPUT_PATH)
 
 
 if __name__ == "__main__":
-    write_entry()
+    main()
